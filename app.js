@@ -5,12 +5,16 @@ const http = require('http');
 
 const server = http.createServer(app);
 const io = socketio(server);
+
+const {addUser, removeUser, getUser, getUsersInRoom} = require('./users');
 const router = require('./router');
 
 app.use(router);
 
 io.on('connection', (socket) => {
-    console.log('New Connection');
+    socket.on('join', ({name, room}, callback) => {
+        
+    });
     socket.on('disconnect', () => {
         console.log('User Left');
     });
